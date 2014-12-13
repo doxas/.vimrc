@@ -66,14 +66,18 @@ imap <c-l> <esc>
 
 nnoremap <c-j> 10j
 nnoremap <c-k> 10k
-nnoremap <c-up> <c-w>+
-nnoremap <c-down> <c-w>-
-nnoremap mw <c-w><c-w>
+nnoremap mh <c-w>>
+nnoremap ml <c-w><
+nnoremap mk <c-w>+
+nnoremap mj <c-w>-
+nnoremap mw <c-w>w
+nnoremap mp <c-w>p
 nnoremap mn gt
 nnoremap mb gT
 nnoremap mt :<c-u>tabnew<cr>
 nnoremap md :<c-u>NERDTree<cr>
 nnoremap <esc><esc> :noh<cr>
+nnoremap <c-l><c-l> :noh<cr>
 
 let g:markdown_fenced_languages=['html', 'css', 'javascript', 'bash=sh']
 
