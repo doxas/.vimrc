@@ -66,6 +66,7 @@ imap <c-l> <esc>
 
 nnoremap <c-j> 10j
 nnoremap <c-k> 10k
+nnoremap <c-;> :
 nnoremap mh <c-w><
 nnoremap ml <c-w>>
 nnoremap mk <c-w>+
