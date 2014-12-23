@@ -62,6 +62,8 @@ au BufRead,BufNew * match ZenkakuSpace /　/
 
 imap <c-l> <esc>
 imap <c-_> <c-y>,
+nmap <c-_> <Plug>(caw:i:toggle)
+vmap <c-_> <Plug>(caw:i:toggle)
 
 nnoremap <c-j> 10j
 nnoremap <c-k> 10k
