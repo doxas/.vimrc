@@ -48,10 +48,8 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tyru/caw.vim'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'closetag.vim'
-NeoBundle 'kchmck/vim-coffee-scrpt'
+NeoBundle 'mattn/emmet-vim'
 
 filetype plugin indent on
 filetype indent on
@@ -63,13 +61,14 @@ highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray guifg=DarkGray
 au BufRead,BufNew * match ZenkakuSpace /　/
 
 imap <c-l> <esc>
+imap <c-_> <c-y>,
 
 nnoremap <c-j> 10j
 nnoremap <c-k> 10k
-nnoremap mh <c-w><
-nnoremap ml <c-w>>
-nnoremap mk <c-w>+
-nnoremap mj <c-w>-
+nnoremap mh 5<c-w><
+nnoremap ml 5<c-w>>
+nnoremap mk 5<c-w>+
+nnoremap mj 5<c-w>-
 nnoremap mw <c-w>w
 nnoremap mp <c-w>p
 nnoremap mn gt
