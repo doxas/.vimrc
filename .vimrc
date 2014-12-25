@@ -12,8 +12,10 @@ set showcmd
 set cmdheight=2
 set scrolloff=5
 set showmatch
+set matchtime=1
 set textwidth=0
 set wrap
+set display=lastline
 set cursorline
 
 set backspace=indent,eol,start
@@ -33,6 +35,9 @@ set fileencoding=utf-8
 set noswapfile
 set nobackup
 set nowritebackup
+
+set pumheight=20
+
 
 "neobundle
 filetype off
@@ -64,6 +69,9 @@ imap <c-l> <esc>
 imap <c-_> <c-y>,
 nmap <c-_> <Plug>(caw:i:toggle)
 vmap <c-_> <Plug>(caw:i:toggle)
+nnoremap <c-;> :
+nnoremap + <c-a>
+nnoremap - <c-x>
 
 nnoremap <c-j> 10j
 nnoremap <c-k> 10k
