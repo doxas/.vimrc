@@ -50,6 +50,7 @@ endif
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tyru/caw.vim'
@@ -93,4 +94,25 @@ let g:markdown_fenced_languages=['html', 'css', 'javascript', 'bash=sh']
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
 autocmd QuickFixCmdPost *grep* cwindow
+
+let g:lightline = {
+\   'active': {
+\     'left': [ 
+\       [ 'mode', 'paste' ],
+\       [ 'fugitive', 'readonly', 'filename', 'modified' ]
+\     ]
+\   },
+\   'inactive': {
+\     'left': [ 
+\       [ 'fugitive', 'readonly', 'filename', 'modified' ]
+\     ]
+\   },
+\   'component': {
+\     'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
+\     'readonly': '%{&filetype=="help"?"":&readonly?"x":""}',
+\     'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
+\   },
+\   'separator': { 'left': '', 'right': '' },
+\   'subseparator': { 'left': '|', 'right': '|' }
+\ }
 
