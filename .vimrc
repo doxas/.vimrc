@@ -80,6 +80,10 @@ nnoremap mh 5<c-w><
 nnoremap ml 5<c-w>>
 nnoremap mk 5<c-w>+
 nnoremap mj 5<c-w>-
+nnoremap m<left> <c-w>h
+nnoremap m<down> <c-w>j
+nnoremap m<up> <c-w>k
+nnoremap m<right> <c-w>l
 nnoremap mw <c-w>w
 nnoremap mp <c-w>p
 nnoremap mn gt
