@@ -56,6 +56,7 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'cohama/agit.vim'
 
 filetype plugin indent on
 filetype indent on
