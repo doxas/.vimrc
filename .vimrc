@@ -71,28 +71,42 @@ imap <c-l> <esc>
 imap <c-_> <c-y>,
 nmap <c-_> <Plug>(caw:i:toggle)
 vmap <c-_> <Plug>(caw:i:toggle)
-nnoremap <c-;> :
+
+nnoremap k   gk
+nnoremap j   gj
+vnoremap k   gk
+vnoremap j   gj
+nnoremap gk  k
+nnoremap gj  j
+vnoremap gk  k
+vnoremap gj  j
+
 nnoremap + <c-a>
 nnoremap - <c-x>
-
 nnoremap <c-j> 10j
 nnoremap <c-k> 10k
 nnoremap mh 5<c-w><
 nnoremap ml 5<c-w>>
 nnoremap mk 5<c-w>+
 nnoremap mj 5<c-w>-
-nnoremap m<left> <c-w>h
-nnoremap m<down> <c-w>j
-nnoremap m<up> <c-w>k
+nnoremap m<left>  <c-w>h
+nnoremap m<down>  <c-w>j
+nnoremap m<up>    <c-w>k
 nnoremap m<right> <c-w>l
-nnoremap mw <c-w>w
-nnoremap mp <c-w>p
-nnoremap mn gt
-nnoremap mb gT
-nnoremap mt :<c-u>tabnew<cr>
-nnoremap md :<c-u>NERDTree<cr>
+nnoremap mm <c-w>w
+nnoremap m, <c-w>p
+nnoremap mt :tabnew<cr>
+nnoremap mw gt
+nnoremap mp gT
+nnoremap mn :cn<cr>
+nnoremap mb :cN<cr>
+nnoremap mq :ccl<cr>
 nnoremap <esc><esc> :noh<cr>
 nnoremap <c-l><c-l> :noh<cr>
+nnoremap <c-f> :vimgrep //j %<left><left><left><left>
+
+nnoremap <space>a :Agit<cr>
+nnoremap <space>d :NERDTree<cr>
 
 let g:markdown_fenced_languages=['html', 'css', 'javascript', 'bash=sh']
 
