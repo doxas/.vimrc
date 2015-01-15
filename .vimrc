@@ -38,6 +38,7 @@ set nowritebackup
 
 set pumheight=20
 
+set timeout timeoutlen=1000 ttimeoutlen=75
 
 "neobundle
 filetype off
