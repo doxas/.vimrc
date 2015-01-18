@@ -105,6 +105,8 @@ nnoremap mq :ccl<cr>
 nnoremap <esc><esc> :noh<cr>
 nnoremap <c-l><c-l> :noh<cr>
 nnoremap <c-f> :vimgrep //j %<left><left><left><left>
+nnoremap <c-h> :%s///g<left><left><left>
+vnoremap <c-h> :s///g<left><left><left>
 
 nnoremap <space>a :Agit<cr>
 nnoremap <space>d :NERDTree<cr>
