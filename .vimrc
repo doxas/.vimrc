@@ -135,6 +135,7 @@ let g:lightline = {
 \ }
 
 let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowHidden=1
 
 if !argc()
   autocmd vimenter * NERDTree
