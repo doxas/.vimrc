@@ -113,10 +113,6 @@ nnoremap <space>d :NERDTree<cr>
 
 let g:markdown_fenced_languages=['html', 'css', 'javascript', 'bash=sh']
 
-autocmd! FileType markdown hi! def link markdownItalic Normal
-
-autocmd QuickFixCmdPost *grep* cwindow
-
 let g:lightline = {
 \   'active': {
 \     'left': [ 
@@ -137,4 +133,12 @@ let g:lightline = {
 \   'separator': { 'left': '', 'right': '' },
 \   'subseparator': { 'left': '|', 'right': '|' }
 \ }
+
+let g:NERDTreeShowBookmarks=1
+
+autocmd vimenter * NERDTree
+
+autocmd! FileType markdown hi! def link markdownItalic Normal
+
+autocmd QuickFixCmdPost *grep* cwindow
 
