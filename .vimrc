@@ -136,7 +136,9 @@ let g:lightline = {
 
 let g:NERDTreeShowBookmarks=1
 
-autocmd vimenter * NERDTree
+if !argc()
+  autocmd vimenter * NERDTree
+endif
 
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
