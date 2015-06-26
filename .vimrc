@@ -1,6 +1,6 @@
 set nocompatible
 
-"ligjtline
+"lightline
 set laststatus=2
 set t_Co=256
 
@@ -58,6 +58,7 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'cohama/agit.vim'
+NeoBundle 'bronson/vim-trailing-whitespace'
 
 filetype plugin indent on
 filetype indent on
@@ -65,10 +66,22 @@ filetype indent on
 syntax on
 colorscheme molokai
 
-highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray guifg=DarkGray
-au BufRead,BufNew * match ZenkakuSpace /　/
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray guifg=DarkGray
+endfunction
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    augroup END
+    call ZenkakuSpace()
+endif
 
+"keys
+map q: :q
 imap <c-l> <esc>
+vmap <c-l> <esc>
 imap <c-_> <c-y>,
 nmap <c-_> <Plug>(caw:i:toggle)
 vmap <c-_> <Plug>(caw:i:toggle)
@@ -81,11 +94,17 @@ nnoremap gk  k
 nnoremap gj  j
 vnoremap gk  k
 vnoremap gj  j
+nnoremap <c-j> 10j
+nnoremap <c-k> 10k
+vnoremap <c-j> 10j
+vnoremap <c-k> 10k
+nnoremap ma $
+nnoremap mi ^
+vnoremap ma $
+vnoremap mi ^
 
 nnoremap + <c-a>
 nnoremap - <c-x>
-nnoremap <c-j> 10j
-nnoremap <c-k> 10k
 nnoremap mh 5<c-w><
 nnoremap ml 5<c-w>>
 nnoremap mk 5<c-w>+
@@ -99,15 +118,20 @@ nnoremap m, <c-w>p
 nnoremap mt :tabnew<cr>
 nnoremap mw gt
 nnoremap mp gT
-nnoremap mn :cn<cr>
-nnoremap mb :cN<cr>
-nnoremap mq :ccl<cr>
+
+nnoremap <cr> 3w
+nnoremap <bs> 3b
+
 nnoremap <esc><esc> :noh<cr>
 nnoremap <c-l><c-l> :noh<cr>
 nnoremap <c-f> :vimgrep //j %<left><left><left><left>
 nnoremap <c-h> :%s///g<left><left><left>
 vnoremap <c-h> :s///g<left><left><left>
+nnoremap <space>n :cn<cr>
+nnoremap <space>b :cN<cr>
+nnoremap <space>q :ccl<cr>
 
+nnoremap <space>c :FixWhitespace<cr>
 nnoremap <space>a :Agit<cr>
 nnoremap <space>d :NERDTree<cr>
 
@@ -144,4 +168,5 @@ endif
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
 autocmd QuickFixCmdPost *grep* cwindow
+
 
