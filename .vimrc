@@ -23,8 +23,12 @@ set clipboard+=unnamed
 set list
 set listchars=tab:›\ 
 set autoindent
+set smarttab
+set expandtab
 set tabstop=4
 set shiftwidth=4
+set softtabstop=0
+set background=dark
 
 set incsearch
 set noignorecase
@@ -59,6 +63,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin indent on
 filetype indent on
@@ -161,9 +166,20 @@ let g:lightline = {
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
 
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+
 if !argc()
   autocmd vimenter * NERDTree
 endif
+
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=1
+let g:indent_guides_guide_size=1
+let g:indent_guides_auto_colors=0
+let g:indent_guides_exclude_filetypes=['help', 'nerdtree', 'Agit stat', 'Agit diff']
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=232
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=234
 
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
