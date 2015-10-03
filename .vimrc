@@ -55,6 +55,7 @@ endif
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'glsl.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'thinca/vim-quickrun'
@@ -108,6 +109,7 @@ nnoremap mi ^
 vnoremap ma $
 vnoremap mi ^
 
+nnoremap J Jx
 nnoremap + <c-a>
 nnoremap - <c-x>
 nnoremap mh 5<c-w><
@@ -180,6 +182,9 @@ let g:indent_guides_auto_colors=0
 let g:indent_guides_exclude_filetypes=['help', 'nerdtree', 'Agit stat', 'Agit diff']
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=232
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=234
+
+autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl
+            \ set syntax=glsl
 
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
