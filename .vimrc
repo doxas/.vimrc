@@ -43,28 +43,29 @@ set nowritebackup
 set pumheight=20
 
 set timeout timeoutlen=1000 ttimeoutlen=75
+set ambiwidth=double
 
 "neobundle
 filetype off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
+  NeoBundleFetch 'Shougo/neobundle.vim'
+
+  NeoBundle 'Shougo/neobundle.vim'
+  NeoBundle 'tpope/vim-fugitive'
+  NeoBundle 'itchyny/lightline.vim'
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'tyru/caw.vim'
+  NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'mattn/emmet-vim'
+  NeoBundle 'cohama/agit.vim'
+  NeoBundle 'bronson/vim-trailing-whitespace'
+  NeoBundle 'nathanaelkane/vim-indent-guides'
+  call neobundle#end()
 endif
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'glsl.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'tyru/caw.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'cohama/agit.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin indent on
 filetype indent on
@@ -182,9 +183,6 @@ let g:indent_guides_auto_colors=0
 let g:indent_guides_exclude_filetypes=['help', 'nerdtree', 'Agit stat', 'Agit diff']
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=232
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=234
-
-autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl
-            \ set syntax=glsl
 
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
