@@ -32,7 +32,7 @@ set incsearch
 set noignorecase
 set smartcase
 set encoding=utf8
-set fileencoding=utf-8
+set fileencoding=utf8
 set noswapfile
 set nobackup
 set nowritebackup
@@ -44,8 +44,11 @@ set ambiwidth=double
 set guioptions-=T
 set columns=160
 set lines=120
-set guifont=Consolas:h12
+set guifont=Migu\ 1M:h12
 
+"gvim
+set iminsert=0
+set imsearch=-1
 
 "neobundle
 filetype off
@@ -64,7 +67,6 @@ if has('vim_starting')
   NeoBundle 'mattn/emmet-vim'
   NeoBundle 'cohama/agit.vim'
   NeoBundle 'bronson/vim-trailing-whitespace'
-  NeoBundle 'scrooloose/syntastic.git'
 
   call neobundle#end()
 endif
@@ -74,7 +76,7 @@ filetype plugin indent on
 filetype indent on
 
 syntax on
-colorscheme desert
+colorscheme molokai
 
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray guifg=DarkGray
@@ -129,9 +131,6 @@ nnoremap m, <c-w>p
 nnoremap mt :tabnew<cr>
 nnoremap mw gt
 nnoremap mp gT
-
-nnoremap <cr> 3w
-nnoremap <bs> 3b
 
 nnoremap <esc><esc> :noh<cr>
 nnoremap <c-l><c-l> :noh<cr>
@@ -190,20 +189,16 @@ autocmd! FileType markdown hi! def link markdownItalic Normal
 
 autocmd QuickFixCmdPost *grep* cwindow
 
-"Syntastic ---------------------------------------------------------------------
-let g:syntastic_mode_map = { 'mode': 'passive',
-                          \ 'active_filetypes': ['javascript'],
-                          \ 'passive_filetypes': [] }
-let g:syntastic_javascript_jslint_conf = "--white --undef --nomen --regexp --plusplus --bitwise --newcap --sloppy --vars --stupidity"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set guifont=Consolas:h11:cANSI
+set transparency=242
 
-let g:syntastic_javascript_checkers = ['jslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs = 1
-" let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers=['eslint']
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_always_populate_loc_list = 0
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+
+
 
 
