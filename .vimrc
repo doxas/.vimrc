@@ -1,6 +1,5 @@
 set nocompatible
 
-"lightline
 set laststatus=2
 set t_Co=256
 
@@ -50,29 +49,27 @@ filetype off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#begin(expand('~/.vim/bundle/'))
-
-  NeoBundleFetch 'Shougo/neobundle.vim'
-  NeoBundle 'Shougo/neobundle.vim'
-  NeoBundle 'tpope/vim-fugitive'
-  NeoBundle 'itchyny/lightline.vim'
-  NeoBundle 'thinca/vim-quickrun'
-  NeoBundle 'tyru/caw.vim'
-  NeoBundle 'scrooloose/nerdtree'
-  NeoBundle 'mattn/emmet-vim'
-  NeoBundle 'cohama/agit.vim'
-  NeoBundle 'bronson/vim-trailing-whitespace'
-  NeoBundle 'nathanaelkane/vim-indent-guides'
-  NeoBundle 'scrooloose/syntastic.git'
-
-  call neobundle#end()
 endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tchyny/vim-cursorword'
+NeoBundle 'tyru/caw.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'cohama/agit.vim'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'rust-lang/rust.vim'
+call neobundle#end()
 
 filetype plugin indent on
 filetype indent on
 
 syntax on
-colorscheme molokai
+colorscheme badwolf
 
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkGray guifg=DarkGray
@@ -90,9 +87,11 @@ endif
 map q: :q
 imap <c-l> <esc>
 vmap <c-l> <esc>
+imap <c-k> <esc>
 imap <c-_> <c-y>,
-nmap <c-_> <Plug>(caw:i:toggle)
-vmap <c-_> <Plug>(caw:i:toggle)
+nmap <c-_> <Plug>(caw:hatpos:toggle)
+vmap <c-_> <Plug>(caw:hatpos:toggle)
+vmap <Enter> <Plug>(EasyAlign)
 
 nnoremap k   gk
 nnoremap j   gj
@@ -128,7 +127,6 @@ nnoremap mt :tabnew<cr>
 nnoremap mw gt
 nnoremap mp gT
 
-nnoremap <cr> 3w
 nnoremap <bs> 3b
 
 nnoremap <esc><esc> :noh<cr>
@@ -143,11 +141,9 @@ nnoremap <space>q :ccl<cr>
 nnoremap <space>c :FixWhitespace<cr>
 nnoremap <space>a :Agit<cr>
 nnoremap <space>d :NERDTree<cr>
-nnoremap <space>s :SyntasticCheck<cr>
-nnoremap <space>n :lnext<cr>
-nnoremap <space>p :lprevious<cr>
 
-"lightline
+let g:markdown_fenced_languages=['html', 'css', 'javascript', 'bash=sh']
+
 let g:lightline = {
 \   'active': {
 \     'left': [ 
@@ -169,16 +165,22 @@ let g:lightline = {
 \   'subseparator': { 'left': '|', 'right': '|' }
 \ }
 
-"nerdtree
+let g:brightest#highlight = {
+\   "group" : "BrightestUnderline"
+\}
+
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
+
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+
 if !argc()
   autocmd vimenter * NERDTree
 endif
 
-"indent guide
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=darkgrey
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
+
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_start_level=1
 let g:indent_guides_guide_size=1
@@ -187,29 +189,14 @@ let g:indent_guides_exclude_filetypes=['help', 'nerdtree', 'Agit stat', 'Agit di
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=232
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=234
 
-"syntastic
-let g:syntastic_check_on_open=0
-let g:syntastic_check_on_save=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_loc_list_height=5
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_javascript_checker='jshint'
-let g:syntastic_mode_map={
-      \ 'mode': 'active',
-      \ 'active_filetypes': ['javascript'],
-      \ 'passive_filetypes': []
-      \ }
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-
-"other
-let g:markdown_fenced_languages=['html', 'css', 'javascript', 'bash=sh']
-
 autocmd! FileType markdown hi! def link markdownItalic Normal
 
 autocmd QuickFixCmdPost *grep* cwindow
 
+let g:quickrun_config={'*': {'split': ''}}
+set splitbelow
+
+autocmd BufNewFile,BufRead *.crs setf rust
+autocmd BufNewFile,BufRead *.rs  let g:quickrun_config.rust = {'exec' : 'cargo run'}
+autocmd BufNewFile,BufRead *.crs let g:quickrun_config.rust = {'exec' : 'cargo script %s -- %a'}
 
